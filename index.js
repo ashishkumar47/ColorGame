@@ -112,7 +112,7 @@ reset[2].addEventListener("click",function(){
 });
 
 
-reset[3].addEventListener("click",function(){s
+reset[3].addEventListener("click",function(){
 	this.classList.add("selected");
 	reset[2].classList.remove("selected");
 	reset[1].classList.remove("selected");
