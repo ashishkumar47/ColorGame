@@ -2,16 +2,19 @@ var number=9;
 var box= generaterandom(number);
 var select=document.querySelectorAll(".square");
 var answer=document.querySelector(".answer");
-var pickedcolor=box[Math.floor(Math.random()*box.length)];
+var pickedcolor=box[Math.floor(Math.random()*6)];
 var displaycolor=document.querySelector("#name");
 var h1=document.querySelector("h1");
 var reset=document.querySelectorAll("button");
+var initialLoadingFlag=1;
 for(var i=6;i<select.length;i++)
 {
 	select[i].style.display="none";
 }
 displaycolor.textContent= pickedcolor;
 reset[0].addEventListener("click",function(){
+	if(initialLoadingFlag===1)
+		number=6;
 	var newcolor=generaterandom(number);
 	var newpickedcolor=newcolor[Math.floor(Math.random()*newcolor.length)];
 	for(var i=0;i<newcolor.length;i++)
@@ -47,24 +50,11 @@ for(var i=0; i<box.length;i++)
 	});
 }
 
-function generaterandom(x){
-	var color=[];
-  for(var i=0;i<x;i++)
-  {
-  	var a=Math.floor(Math.random()*256);
-  	var b=Math.floor(Math.random()*256);
-  	var c=Math.floor(Math.random()*256);
-  	var fill="rgb("+a+","+" "+b+","+" "+c+")";
-  	color.push(fill);
-  	//console.log(a, b, c);
-  	//console.log(fill);
-  }
-  return color;
-}
 reset[1].addEventListener("click",function(){
     this.classList.add("selected");
     reset[2].classList.remove("selected");
     reset[3].classList.remove("selected");
+    initialLoadingFlag=0;
     number=3;
     var newcolor=generaterandom(number);
 	var newpickedcolor=newcolor[Math.floor(Math.random()*newcolor.length)];
@@ -93,6 +83,7 @@ reset[2].addEventListener("click",function(){
 	this.classList.add("selected");
     reset[1].classList.remove("selected");
     reset[3].classList.remove("selected");
+    initialLoadingFlag=0;
     number=6;
     var newcolor=generaterandom(number);
 	var newpickedcolor=newcolor[Math.floor(Math.random()*newcolor.length)];
@@ -121,10 +112,11 @@ reset[2].addEventListener("click",function(){
 });
 
 
-reset[3].addEventListener("click",function(){
+reset[3].addEventListener("click",function(){s
 	this.classList.add("selected");
 	reset[2].classList.remove("selected");
 	reset[1].classList.remove("selected");
+	initialLoadingFlag=0;
 	number=9;
 	var newcolor=generaterandom(number);
 	var newpickedcolor=newcolor[Math.floor(Math.random()*newcolor.length)];
@@ -140,3 +132,19 @@ reset[3].addEventListener("click",function(){
 	answer.textContent="";
 	reset[0].textContent="NEW COLORS";
 });
+
+
+function generaterandom(x){
+	var color=[];
+  for(var i=0;i<x;i++)
+  {
+  	var a=Math.floor(Math.random()*256);
+  	var b=Math.floor(Math.random()*256);
+  	var c=Math.floor(Math.random()*256);
+  	var fill="rgb("+a+","+" "+b+","+" "+c+")";
+  	color.push(fill);
+  	//console.log(a, b, c);
+  	//console.log(fill);
+  }
+  return color;
+}
